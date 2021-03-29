@@ -6,6 +6,7 @@
 #        - LTC3564, LT3065
 #        - ADP122/ADP123
 #        - LT8610
+#        - ADP3334
 
 # Standards nominal resistance
 set stdR { 1 1.1 1.21 1.5 1.6 1.78 2.37 2.74 3.32 4.75 6.98 9.76 }
@@ -62,6 +63,18 @@ proc calcLT8610 {r1 r2 vName} {
     set v [expr 0.8*(1+$r1/$r2)]
 }
 
+# ADP3334
+set headerADP3334 "Power Supplies: ADP3334
+ Output Voltage:
+  Vout = 1.178 ( R1/R2 + 1 )
+
+R1; R2(connect to gnd);    Vout"
+
+proc calcADP3334 {r1 r2 vName} {
+    upvar $vName v
+    set v [expr 1.178*($r1/$r2 + 1)]
+}
+
 # Start:
 puts "Calculation Power Supplies resistors ..."
 
@@ -100,3 +113,15 @@ foreach r1 $stdR {
     }
 }
 writeFile "vout_lt8610.log" $headerLT8610 $vList
+
+set vList {}
+foreach r1 $stdR {
+    foreach r2 $stdR {
+        calcADP3334 $r1 $r2 vout
+        set voutMax 10.1
+        if {$vout < $voutMax} {
+            lappend vList "$r1\t$r2\t\t$vout"
+        }
+    }
+}
+writeFile "vout_adp3334.log" $headerADP3334 $vList
