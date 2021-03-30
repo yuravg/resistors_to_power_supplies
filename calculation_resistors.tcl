@@ -8,6 +8,8 @@
 #        - LT8610
 #        - ADP3334
 
+set tcl_precision 5
+
 # Standards nominal resistance
 set stdR { 1 1.1 1.21 1.5 1.6 1.78 2.37 2.74 3.32 4.75 6.98 9.76 }
 append stdR { 10.2 12.1 15.4 16.9 20 22.1 23.7 24.9 30.1 30.9 32.4 }
