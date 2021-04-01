@@ -10,12 +10,12 @@
 
 set tcl_precision 5
 
-# Standards nominal resistance
-set stdR { 1 1.1 1.21 1.5 1.6 1.78 2.37 2.74 3.32 4.75 6.98 9.76 }
-append stdR { 10.2 12.1 15.4 16.9 20 22.1 23.7 24.9 30.1 30.9 32.4 }
-append stdR { 33.2 54.9 100 1.07 107 115 11.8 121 127 130 140 147 }
-append stdR { 162 169 182 191 200 210 274 332 365 562 5.62 60.4 }
-append stdR { 61.9 64.9 68.1 75.0 768 76.8 84.5 88.7 909 93.1 95.3 }
+# Standard value decade for 1% resistors
+# NOTE: List of resistors *NOT COMPLETE*! Only the resistors that I use are listed.
+set stdR    { 1 1.07 1.1 1.5 1.6 1.78 2.74 3.32 5.62 9.76 10.2 11.8 15.4 16.9 20 22.1 }
+append stdR { 23.7 24.9 30.1 30.9 32.4 33.2 43.2 52.3 54.9 60.4 61.9 64.9 75.0 78.7 }
+append stdR { 84.5 88.7 90.9 93.1 95.3 100 107 121 127 140 147 162 169 182 191 200 210 }
+append stdR { 237 274 301 332 365 412 432 453 475 562 634 698 768 866 909 1000 }
 
 # Write to files
 proc writeFile {fname strHeader vList} {
