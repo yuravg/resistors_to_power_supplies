@@ -38,7 +38,7 @@ R1(connect to gnd); R2;    Vout"
 
 proc calcLTC3564 {r1 r2 vName} {
     upvar $vName v
-    set v [expr 0.6*(1+$r2/$r1)]
+    set v [expr 0.6*(1+($r2+0.0)/$r1)]
 }
 
 # ADP122/ADP123
@@ -50,7 +50,7 @@ R1; R2(connect to gnd);    Vout"
 
 proc calcADP122 {r1 r2 vName} {
     upvar $vName v
-    set v [expr 0.5*(1+$r1/$r2)]
+    set v [expr 0.5*(1+($r1+0.0)/$r2)]
 }
 
 # LT8610
@@ -62,7 +62,7 @@ R1; R2(connect to gnd);    Vout"
 
 proc calcLT8610 {r1 r2 vName} {
     upvar $vName v
-    set v [expr 0.8*(1+$r1/$r2)]
+    set v [expr 0.8*(1+($r1+0.0)/$r2)]
 }
 
 # ADP3334
@@ -74,7 +74,7 @@ R1; R2(connect to gnd);    Vout"
 
 proc calcADP3334 {r1 r2 vName} {
     upvar $vName v
-    set v [expr 1.178*($r1/$r2 + 1)]
+    set v [expr 1.178*(($r1+0.0)/$r2 + 1)]
 }
 
 # Start:
