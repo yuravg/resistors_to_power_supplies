@@ -70,7 +70,7 @@ set headerADP3334 "Power Supplies: ADP3334
  Output Voltage:
   Vout = 1.178 ( R1/R2 + 1 )
 
-R1; R2(connect to gnd);    Vout"
+R1; R2(connect to gnd);    Vout         R parallel(close as possible to 50kΩ)"
 
 proc calcADP3334 {r1 r2 vName} {
     upvar $vName v
@@ -122,7 +122,11 @@ foreach r1 $stdR {
         calcADP3334 $r1 $r2 vout
         set voutMax 10.1
         if {$vout < $voutMax} {
-            lappend vList "$r1\t$r2\t\t$vout"
+            set rParallel [expr (($r1+0.0)*$r2 / ($r1 + $r2))]
+            # close as possible to 50kΩ
+            if {(10 < $rParallel) && ($rParallel < 100)} {
+                lappend vList "$r1\t$r2\t\t$vout\t\t$rParallel"
+            }
         }
     }
 }
